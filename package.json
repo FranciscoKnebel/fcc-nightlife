@@ -1,0 +1,40 @@
+{
+  "name": "fcc-nightlife",
+  "version": "1.0.0",
+  "description": "Nightlife coordinator for FreeCodeCamp.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KyoZeus/fcc-nightlife.git"
+  },
+  "keywords": [
+    "freecodecamp",
+    "nightlife",
+    "basejump"
+  ],
+  "author": "KyoZeus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KyoZeus/fcc-nightlife/issues"
+  },
+  "homepage": "https://github.com/KyoZeus/fcc-nightlife#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "bootstrap": "^4.0.0-alpha.3",
+    "connect-flash": "^0.1.1",
+    "dotenv": "^2.0.0",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.0",
+    "jquery": "^3.1.0",
+    "mongoose": "^4.5.7",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "request": "^2.74.0"
+  }
+}

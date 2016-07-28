@@ -1,0 +1,23 @@
+<% if(typeof user !== "undefined") { %>
+	<nav class="navbar navbar-fixed-top bg-inverse">
+		<ul class="nav navbar-nav pull-xs-right">
+			<li class="nav-item">
+				<p class="font-weight-bold text-info"><%= user.email %></p>
+			</li>
+			<li class="nav-item">
+				<a href="/logout" class="btn btn-danger">Logout</a>
+			</li>
+		</ul>
+	</nav>
+<% } else { %>
+	<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+		<ul class="nav navbar-nav pull-xs-right">
+			<li class="nav-item">
+				<a href="/login" class="btn btn-success">Login</a>
+			</li>
+			<li class="nav-item">
+				<a href="/signup" class="btn btn-primary">Signup</a>
+			</li>
+		</ul>
+	</nav>
+<% } %>
