@@ -28,11 +28,11 @@ app.controller('wall-controller', function ($scope, $http) {
 					}
 
 					$http.post('/search', coords).then(function (response) {
-						$scope.businesses = parseBusinesses(response.data);
+						$scope.businesses = response.data;
 						$scope.busy = false;
 						angular.element(document).find("#findmebutton").removeClass("disabled");
 					}, function (response) {
-						$scope.message = (response.data)
+						$scope.message = (response.data);
 						$scope.busy = false;
 						angular.element(document).find("#findmebutton").removeClass("disabled");
 					});
@@ -88,7 +88,7 @@ app.controller('wall-controller', function ($scope, $http) {
 				}
 
 				$http.post('/search', location).then(function (response) {
-					$scope.businesses = parseBusinesses(response.data);
+					$scope.businesses = response.data;
 
 					$scope.busy = false;
 					angular.element(document).find("#searchform").removeClass("disabled");
@@ -106,23 +106,5 @@ app.controller('wall-controller', function ($scope, $http) {
 
 	$scope.dismissAlert = function () {
 		$scope.message = "";
-	}
-
-	function parseBusinesses(data) {
-		var aux = [];
-
-		data.businesses.forEach(elem => {
-			aux.push({
-				name: elem.name || undefined,
-				phone: elem.display_phone || undefined,
-				image: elem.image_url || undefined,
-				ratingImage: elem.rating_img_url_large || undefined,
-				url: elem.url || undefined,
-				location: elem.location.display_address || undefined,
-				categories: elem.categories || undefined
-			});
-		});
-
-		return aux;
 	}
 });

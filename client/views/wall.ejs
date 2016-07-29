@@ -60,7 +60,9 @@
 								</a>
 
 								<p class="card-text m-t-sm">
-									<span class="btn btn-outline-primary">X going!</span>
+									<span class="btn btn-outline-primary" ng-click="goingTo('{{business.id}}')">
+										{{business.goingTo}}
+										going!</span>
 								</p>
 								<address class="card-text">
 									{{business.location}}
