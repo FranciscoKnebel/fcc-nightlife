@@ -3,6 +3,8 @@ var app = angular.module('wall', []);
 app.controller('wall-controller', function ($scope, $http) {
 	$scope.busy = false;
 	$scope.message = "";
+	angular.element(document).find(".hidden-xs-up").removeClass("hidden-xs-up");
+
 
 	$scope.findme = function () {
 		if ($scope.busy !== true) {
@@ -26,7 +28,7 @@ app.controller('wall-controller', function ($scope, $http) {
 					}
 
 					$http.post('/search', coords).then(function (response) {
-						showBusiness(response.data);
+						$scope.businesses = parseBusinesses(response.data);
 						$scope.busy = false;
 						angular.element(document).find("#findmebutton").removeClass("disabled");
 					}, function (response) {
@@ -66,6 +68,9 @@ app.controller('wall-controller', function ($scope, $http) {
 				navigator.geolocation.getCurrentPosition(geoSuccess, geoError, geoOptions);
 			} else {
 				$scope.message = "Geolocation is not supported for this Browser/OS version yet.";
+				$scope.$digest();
+				$scope.busy = false;
+				angular.element(document).find("#findmebutton").removeClass("disabled");
 			}
 		}
 	}
@@ -83,7 +88,7 @@ app.controller('wall-controller', function ($scope, $http) {
 				}
 
 				$http.post('/search', location).then(function (response) {
-					showBusiness(response.data);
+					$scope.businesses = parseBusinesses(response.data);
 
 					$scope.busy = false;
 					angular.element(document).find("#searchform").removeClass("disabled");
@@ -103,7 +108,21 @@ app.controller('wall-controller', function ($scope, $http) {
 		$scope.message = "";
 	}
 
-	function showBusiness(data) {
-		console.log(data);
+	function parseBusinesses(data) {
+		var aux = [];
+
+		data.businesses.forEach(elem => {
+			aux.push({
+				name: elem.name || undefined,
+				phone: elem.display_phone || undefined,
+				image: elem.image_url || undefined,
+				ratingImage: elem.rating_img_url_large || undefined,
+				url: elem.url || undefined,
+				location: elem.location.display_address || undefined,
+				categories: elem.categories || undefined
+			});
+		});
+
+		return aux;
 	}
 });

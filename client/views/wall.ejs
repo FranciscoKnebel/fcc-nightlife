@@ -2,6 +2,8 @@
 <html ng-app="wall">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta charset="utf-8">
 		<title>Nightlife - Wall</title>
 
@@ -10,10 +12,10 @@
 	<body ng-controller="wall-controller">
 		<% include snippets/navbar %>
 
-		<div class="container" id="top">
+		<div class="container-fluid" id="top">
 			<div class="row">
 				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-3 col-lg-6">
-					<div class="card text-xs-center">
+					<div class="card">
 						<div class="card-block" id="main">
 							<form>
 								<div class="form-group">
@@ -26,7 +28,7 @@
 								</div>
 							</form>
 
-							<div class="alert alert-warning alert-dismissible fade in" role="alert" ng-show="message">
+							<div class="alert alert-warning alert-dismissible fade in hidden-xs-up" role="alert" ng-show="message">
 								<button type="button" class="close" aria-label="Close" ng-click="dismissAlert()">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -44,26 +46,43 @@
 					</div>
 				</div>
 			</div>
-			<div class="row text-xs-center">
-				<div class="col-md-6">
-					<p id="startLat"></p>
-				</div>
-				<div class="col-md-6">
-					<p id="startLon"></p>
-				</div>
-			</div>
 		</div>
 
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-2 col-lg-8">
-					<div class="card text-xs-center">
-						<div class="card-block"></div>
+				<div class="push-sm-1 col-sm-10 push-md-1 col-md-10 push-lg-2 col-lg-8">
+					<div class="card-group hidden-xs-up">
+						<div class="card text-xs-center" ng-repeat="business in businesses">
+							<div class="card-block">
+								<a href="{{business.url}}" target="_blank">
+									<h4 class="card-title">{{business.name}}</h4>
+									<img ng-src="{{business.image}}" alt=""/>
+								</a>
+
+								<p class="card-text m-t-sm">
+									<span class="btn btn-outline-primary">X going!</span>
+								</p>
+								<address class="card-text">
+									{{business.location}}
+									<br>
+									{{business.phone}}
+								</address>
+								<p class="card-text text-muted">
+									<span ng-repeat="category in business.categories">
+										{{category}}
+									</span>
+								</p>
+
+								<a href="{{business.url}}" target="_blank">
+									<img class="card-img-bottom" ng-src="{{business.ratingImage}}"/>
+								</a>
+							</div>
+						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
-
 		<% include snippets/sharedJS %>
 		<% include snippets/wall %>
 	</body>
