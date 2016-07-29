@@ -35,6 +35,7 @@ module.exports = function (app, dirname, passport) {
 			options.ll = req.body.latitude + "," + req.body.longitude;
 			sendYelp(res, options);
 		} else if (req.body.location) { //user informed location
+			console.log("User informed location.");
 			options.location = req.body.location;
 			sendYelp(res, options);
 		} else {
@@ -55,7 +56,6 @@ function sendYelp(res, options) {
 			res.send(data);
 		})
 		.catch(function (err) {
-			console.error(err);
 			res.status(404).send("Location not found");
 		});
 }
