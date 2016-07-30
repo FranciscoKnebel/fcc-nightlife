@@ -22,7 +22,7 @@
 									<div class="input-group">
 										<input type="text" class="form-control" id="searchform" placeholder="Search for..." ng-model="locale">
 										<span class="input-group-btn">
-											<button class="btn btn-secondary" id="searchbutton" type="submit" ng-click="searchlocation()">Go!</button>
+											<button class="btn btn-secondary disable-buttons" id="searchbutton" type="submit" ng-click="searchlocation()">Go!</button>
 										</span>
 									</div>
 								</div>
@@ -39,7 +39,7 @@
 							</div>
 						</div>
 						<div class="card-footer">
-							<button class="btn btn-secondary btn-block" id="findmebutton" ng-click="findme()">Find near me
+							<button class="btn btn-success btn-block disable-buttons" id="findmebutton" ng-click="findme()">Find near me
 								<i class="fa fa-map-marker"></i>
 							</button>
 						</div>
@@ -60,9 +60,9 @@
 								</a>
 
 								<p class="card-text m-t-sm">
-									<span class="btn btn-outline-primary" ng-click="goingTo('{{business.id}}')">
+									<button class="btn disable-buttons" ng-click="goingTo(business.id)" ng-class="{'btn-outline-primary': !business.goingTo, 'btn-success': business.goingTo}">
 										{{business.goingTo}}
-										going!</span>
+										going!</button>
 								</p>
 								<address class="card-text">
 									{{business.location}}
@@ -87,5 +87,6 @@
 		</div>
 		<% include snippets/sharedJS %>
 		<% include snippets/wall %>
+		<% include snippets/footer %>
 	</body>
 </html>

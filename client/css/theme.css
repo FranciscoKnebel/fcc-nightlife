@@ -1,0 +1,38 @@
+body {
+  background-color: #DADADA;
+}
+
+#top {
+  padding-top: 100px;
+}
+
+footer {
+  padding: 50px 0;
+  color: #7f7f7f;
+  background-color: azure;
+}
+
+a {
+  transition: 1s;
+  color: #a03232;
+}
+
+a:focus, a:hover {
+  transition: 1s;
+	color: #014c8c;
+}
+
+.social {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+.social li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
