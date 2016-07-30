@@ -23,6 +23,12 @@ module.exports = function (app, dirname, passport) {
 			user: req.user
 		});
 	});
+
+	app.get('/categories', function (req, res) {
+		res.render('categories.ejs', {
+			user: req.user
+		});
+	});
 }
 
 function isLoggedIn(req, res, next) {

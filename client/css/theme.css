@@ -2,6 +2,14 @@ body {
   background-color: #DADADA;
 }
 
+body.alternate {
+  background-color: #a03232;
+}
+
+.text-white {
+  color: white;
+}
+
 #top {
   padding-top: 100px;
 }
