@@ -1,10 +1,10 @@
 'use strict';
-
 module.exports = function (app, dirname, passport) {
 
 	require('./static')(app, dirname);
 	require('./auth/local')(app, passport);
 	require('./api')(app);
+	require('./schedule')();
 
 	app.get('/', function (req, res) {
 		res.render('index.ejs', {

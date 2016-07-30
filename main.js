@@ -1,7 +1,6 @@
 var express = require('express');
 var dotenv = require('dotenv').load();
 var mongoose = require('mongoose');
-var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
 var passport = require('passport');
@@ -13,7 +12,6 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI);
 
 var app = express();
-app.use(morgan('dev'));
 app.use(bodyParser.json({
 	extended: true
 }));

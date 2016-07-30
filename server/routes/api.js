@@ -13,7 +13,6 @@ module.exports = function (app) {
 			options.ll = req.body.latitude + "," + req.body.longitude;
 			sendYelp(res, options);
 		} else if (req.body.location) { //user informed location
-			console.log("User informed location.");
 			options.location = req.body.location;
 			sendYelp(res, options);
 		} else {
@@ -32,7 +31,6 @@ module.exports = function (app) {
 			res.send(response);
 		} else if (businessID) {
 			var user = req.user;
-			console.log("---------------------------------------------");
 			Business.findOne({
 				'id': businessID
 			}, function (err, doc) {
@@ -40,7 +38,6 @@ module.exports = function (app) {
 					throw err;
 
 				if (!doc) {
-					console.log("New business " + businessID + "!");
 					var newBusiness = new Business();
 					newBusiness.id = businessID;
 					newBusiness.going = 1;
@@ -56,11 +53,7 @@ module.exports = function (app) {
 						res.send(response);
 					});
 				} else {
-					console.log("Business found.");
-					console.log(doc);
-
 					if (doc.users.length > 0) {
-						console.log("Business has users.");
 						var index = findOptionIndex(doc.users, user.id);
 
 						if (index === null) { //user is not on business list
@@ -90,7 +83,6 @@ module.exports = function (app) {
 						}
 
 					} else { // business has no users listed
-						console.log("Business has no users.");
 						doc.users.push(user);
 						doc.going = 1;
 
@@ -112,8 +104,6 @@ module.exports = function (app) {
 			res.status(400).send("Invalid business ID received.");
 		}
 	});
-
-
 }
 
 function sendYelp(res, options) {
@@ -125,7 +115,6 @@ function sendYelp(res, options) {
 	});
 
 	yelp.search(options).then(function (data) {
-			console.log("Parsing businesses");
 			var businesses = parseBusinesses(data);
 
 			findActiveBusinesses(businesses, res);
@@ -163,13 +152,11 @@ function findActiveBusinesses(businesses, response) {
 		elem.goingTo = 0;
 	});
 
-	console.log("Starting search");
 	Business.find({
 		'id': {
 			$in: idArr
 		}
 	}, function (err, docs) {
-		console.log("Search complete!");
 		if (err)
 			throw err;
 
@@ -210,26 +197,3 @@ function findOptionIndex(array, value) {
 	}
 	return null;
 }
-
-/*	businesses.forEach(elem => {
-		console.log("Searching for " + elem.id);
-		business.findOne({
-			'id': elem.id
-		}, function (err, res) {
-			console.log(++counter + " - Done " + elem.id);
-
-			if (err)
-				throw err;
-
-			if (!res) { //not found any with that id
-				elem.goingTo = 0;
-			} else {
-				elem.goingTo = res.going;
-			}
-
-			if (counter == businesses.length) {
-				console.log("Returning active businesses.");
-				response.send(businesses);
-			}
-		});
-	});*/
