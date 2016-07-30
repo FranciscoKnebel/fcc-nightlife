@@ -15,19 +15,29 @@
 		<video autoplay loop id="video-background" muted>
 			<source src="/video/night.m4v" type="video/mp4">
 		</video>
+
+		<div class="modal fade bd-example-modal-sm" tabindex="-1" id="busyModal">
+			<div class="modal-dialog">
+				<div class="modal-content text-xs-center">
+					<br>
+					<i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+					<span class="sr-only">Loading...</span>
+					<br><br>
+				</div>
+			</div>
+		</div>
+
 		<div class="container-fluid" id="top">
 			<div class="row">
 				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-3 col-lg-6">
 					<div class="card">
 						<div class="card-block" id="main">
-							<form>
-								<div class="form-group">
-									<div class="input-group">
-										<input type="text" class="form-control" id="searchform" placeholder="Search for..." ng-model="locale">
-										<span class="input-group-btn">
-											<button class="btn btn-secondary disable-buttons" id="searchbutton" type="submit" ng-click="searchlocation()">Go!</button>
-										</span>
-									</div>
+							<form class="form-group">
+								<div class="input-group">
+									<input type="text" class="form-control" id="searchform" placeholder="Search for..." ng-model="locale">
+									<span class="input-group-btn">
+										<button class="btn btn-secondary disable-buttons" id="searchbutton" type="submit" ng-click="searchlocation()">Go!</button>
+									</span>
 								</div>
 							</form>
 
@@ -56,14 +66,18 @@
 				<div class="push-sm-1 col-sm-10 push-md-1 col-md-10 push-lg-2 col-lg-8">
 					<div class="card-group hidden-xs-up">
 						<div class="card text-xs-center" ng-repeat="business in businesses">
-							<div class="card-block">
+							<div class="card-header">
 								<a href="{{business.url}}" target="_blank">
 									<h4 class="card-title">{{business.name}}</h4>
-									<img ng-src="{{business.image}}" alt=""/>
+								</a>
+							</div>
+							<div class="card-block">
+								<a href="{{business.url}}" target="_blank">
+									<img ng-src="{{business.image}}" class="m-x-auto img-fluid"/>
 								</a>
 
-								<p class="card-text m-t-sm">
-									<button class="btn disable-buttons" ng-click="goingTo(business.id)" ng-class="{'btn-outline-primary': !business.goingTo, 'btn-success': business.goingTo}">
+								<p class="card-text">
+									<button class="btn btn-block disable-buttons" ng-click="goingTo(business.id)" ng-class="{'btn-outline-primary': !business.goingTo, 'btn-success': business.goingTo}">
 										{{business.goingTo}}
 										going!</button>
 								</p>

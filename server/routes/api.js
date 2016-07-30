@@ -120,7 +120,8 @@ function sendYelp(res, options) {
 			findActiveBusinesses(businesses, res);
 		})
 		.catch(function (err) {
-			res.status(404).send("Location not found");
+			console.error(err);
+			res.status(400).send("Error finding location.");
 		});
 }
 
@@ -128,11 +129,18 @@ function parseBusinesses(data) {
 	var aux = [];
 
 	data.businesses.forEach(elem => {
+		var img;
+		if (elem.image_url === undefined) {
+			img = undefined;
+		} else {
+			img = elem.image_url.replace("ms", "ls")
+		}
+
 		aux.push({
 			id: elem.id,
 			name: elem.name || undefined,
 			phone: elem.display_phone || undefined,
-			image: elem.image_url || undefined,
+			image: img || undefined,
 			ratingImage: elem.rating_img_url_large || undefined,
 			url: elem.url || undefined,
 			location: elem.location.display_address || undefined,

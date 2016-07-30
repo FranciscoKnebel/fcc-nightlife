@@ -1,7 +1,13 @@
 var app = angular.module('wall', []);
+angular.element(document).find('#busyModal').modal({
+	backdrop: false,
+	keyboard: false,
+	show: false
+});
 
 app.controller('wall-controller', function ($scope, $http, $filter) {
 	$scope.busy = false;
+	angular.element(document).find('#busyModal').modal('hide');
 	$scope.message = "";
 	angular.element(document).find(".hidden-xs-up").removeClass("hidden-xs-up");
 
@@ -10,6 +16,7 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 			if (navigator.geolocation) {
 				$scope.message = "";
 				$scope.busy = true;
+				angular.element(document).find('#busyModal').modal('show');
 				angular.element(document).find(".disable-buttons").addClass("disabled");
 
 				var startPos;
@@ -30,10 +37,14 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 					$http.post('/search', coords).then(function (response) {
 						$scope.businesses = response.data;
 						$scope.busy = false;
+						angular.element(document).find('#busyModal').modal('hide');
+
 						angular.element(document).find(".disable-buttons").removeClass("disabled");
 					}, function (response) {
 						$scope.message = (response.data);
 						$scope.busy = false;
+						angular.element(document).find('#busyModal').modal('hide');
+
 						angular.element(document).find(".disable-buttons").removeClass("disabled");
 					});
 				};
@@ -62,6 +73,8 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 
 					$scope.$digest();
 					$scope.busy = false;
+					angular.element(document).find('#busyModal').modal('hide');
+
 					angular.element(document).find(".disable-buttons").removeClass("disabled");
 				};
 
@@ -70,6 +83,8 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 				$scope.message = "Geolocation is not supported for this Browser/OS version yet.";
 				$scope.$digest();
 				$scope.busy = false;
+				angular.element(document).find('#busyModal').modal('hide');
+
 				angular.element(document).find(".disable-buttons").removeClass("disabled");
 			}
 		}
@@ -80,6 +95,8 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 			if ($scope.locale !== undefined) {
 				$scope.message = "";
 				$scope.busy = true;
+				angular.element(document).find('#busyModal').modal('show');
+
 				angular.element(document).find(".disable-buttons").addClass("disabled");
 
 				var location = {
@@ -88,13 +105,15 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 
 				$http.post('/search', location).then(function (response) {
 					$scope.businesses = response.data;
-
 					$scope.busy = false;
+					angular.element(document).find('#busyModal').modal('hide');
+
 					angular.element(document).find(".disable-buttons").removeClass("disabled");
 				}, function (err) {
 					$scope.message = err.data;
-
 					$scope.busy = false;
+					angular.element(document).find('#busyModal').modal('hide');
+
 					angular.element(document).find(".disable-buttons").removeClass("disabled");
 				});
 			}
@@ -105,6 +124,8 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 		if ($scope.busy !== true) {
 			$scope.message = "";
 			$scope.busy = true;
+			angular.element(document).find('#busyModal').modal('show');
+
 			angular.element(document).find(".disable-buttons").addClass("disabled");
 
 			var obj = {
@@ -134,11 +155,13 @@ app.controller('wall-controller', function ($scope, $http, $filter) {
 					}
 
 					$scope.busy = false;
+					angular.element(document).find('#busyModal').modal('hide');
 					angular.element(document).find(".disable-buttons").removeClass("disabled");
 				},
 				function (err) {
 					$scope.message = err.data;
 					$scope.busy = false;
+					angular.element(document).find('#busyModal').modal('hide');
 					angular.element(document).find(".disable-buttons").removeClass("disabled");
 				});
 		}
