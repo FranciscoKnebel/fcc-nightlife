@@ -7,14 +7,16 @@
 		<title>Nightlife</title>
 
 		<% include snippets/sharedCSS %>
-		<% include snippets/sharedJS %>
-
+		<link rel="stylesheet" href="/css/background.css">
 	</head>
 	<body class="alternate">
 		<% include snippets/navbar %>
 
-		<div class="container" id="top">
-			<div class="row">
+		<video autoplay loop id="video-background" muted>
+			<source src="/video/night.m4v" type="video/mp4">
+		</video>
+		<div class="container">
+			<div class="row" id="top">
 				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-3 col-lg-6">
 					<h4 class="text-xs-center text-white">Vida Noturna</h4>
 					<div class="card">
@@ -31,12 +33,12 @@
 								<a href="https://www.yelp.com" target="_blank">Yelp</a>.
 							</p>
 
-							<a href="/wall" class="btn btn-secondary btn-lg btn-block">Go to the Wall!</a>
+							<a href="/wall" class="btn btn-success btn-lg btn-block">Go to the Wall!</a>
 						</div>
 						<div class="card-footer">
 							<div class="container-fluid">
 								<div class="row">
-									<div class="col-md-8 text-xs-center text-md-left">
+									<div class="col-md-12 text-xs-center">
 										<h6>Powered by
 											<a href="https://www.yelp.com" target="_blank">Yelp</a>
 											<i class="fa fa-3x fa-yelp"></i>
@@ -49,6 +51,9 @@
 				</div>
 			</div>
 		</div>
+
 		<% include snippets/footer %>
+
+		<% include snippets/sharedJS %>
 	</body>
 </html>

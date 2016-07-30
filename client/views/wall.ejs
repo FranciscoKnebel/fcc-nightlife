@@ -8,10 +8,13 @@
 		<title>Nightlife - Wall</title>
 
 		<% include snippets/sharedCSS %>
+		<link rel="stylesheet" href="/css/background.css">
 	</head>
 	<body class="alternate" ng-controller="wall-controller">
 		<% include snippets/navbar %>
-
+		<video autoplay loop id="video-background" muted>
+			<source src="/video/night.m4v" type="video/mp4">
+		</video>
 		<div class="container-fluid" id="top">
 			<div class="row">
 				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-3 col-lg-6">
