@@ -7,11 +7,14 @@
 		<title>Nightlife - Categories</title>
 
 		<% include snippets/sharedCSS %>
-		<% include snippets/sharedJS %>
+		<link rel="stylesheet" href="/css/background.css">
 	</head>
 	<body class="alternate">
 		<% include snippets/navbar %>
 
+		<video autoplay loop id="video-background" muted>
+			<source src="/video/night.m4v" type="video/mp4">
+		</video>
 		<div class="container" id="top">
 			<div class="row">
 				<div class="push-sm-1 col-sm-10 push-md-2 col-md-8 push-lg-3 col-lg-6">
@@ -75,13 +78,13 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
-
 				</div>
 			</div>
 		</div>
 
 		<% include snippets/footer %>
+		<% include snippets/sharedJS %>
+
 	</body>
 </html>

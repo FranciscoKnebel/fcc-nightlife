@@ -2,10 +2,6 @@ body {
   background-color: #DADADA;
 }
 
-body.alternate {
-  background-color: #a03232;
-}
-
 .text-white {
   color: white;
 }
@@ -16,8 +12,7 @@ body.alternate {
 
 footer {
   padding: 50px 0;
-  color: #7f7f7f;
-  background-color: azure;
+  color: white;
 }
 
 a {

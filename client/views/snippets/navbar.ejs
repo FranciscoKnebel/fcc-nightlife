@@ -1,5 +1,5 @@
 <% if(typeof user !== "undefined") { %>
-	<nav class="navbar navbar-fixed-top bg-inverse">
+	<nav class="navbar navbar-fixed-top">
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
 				<p class="font-weight-bold text-info"><%= user.email %></p>
@@ -10,7 +10,7 @@
 		</ul>
 	</nav>
 <% } else { %>
-	<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+	<nav class="navbar navbar-fixed-top">
 		<ul class="nav navbar-nav pull-xs-right">
 			<li class="nav-item">
 				<button class="btn btn-success" id="loginButton" data-toggle="modal" data-target="#authModal" data-action="login">Login</a>

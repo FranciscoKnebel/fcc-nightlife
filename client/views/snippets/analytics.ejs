@@ -1,0 +1,6 @@
+<!-- check if user exists. If yes, send userID along with analytics. -->
+<% if(typeof user !== "undefined") { %>
+	<% include analyticsUser %>
+<% } else { %>
+	<% include analyticsNotUser %>
+<% } %>
